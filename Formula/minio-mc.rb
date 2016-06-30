@@ -5,7 +5,7 @@ require "language/go"
 # with every shell. So we're using the go_resource to go get the correct revision, while
 # actually not using the tar from the url. The url isn't possible to skip.
 
-class Miniomc < Formula
+class MinioMc < Formula
   homepage "https://github.com/minio/mc"
   url "https://github.com/minio/mc/archive/RELEASE.2016-06-03T18-48-37Z.tar.gz"
   version "1.0"
@@ -25,13 +25,13 @@ class Miniomc < Formula
       Language::Go.stage_deps resources, buildpath/"src"
 
       cd buildpath/"src/github.com/minio/mc" do
-          system "go", "build", "-o", buildpath/"minio-mc" 
+          system "go", "build", "-o", buildpath/"mc" 
       end
 
-      bin.install buildpath/"minio-mc"
+      bin.install buildpath/"mc"
   end
 
   test do
-    system "#{bin}/minio-mc"
+    system "#{bin}/mc"
   end
 end
